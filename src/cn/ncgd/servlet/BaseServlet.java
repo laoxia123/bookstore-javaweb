@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class BaseServlet extends HttpServlet {
 
-	
 	private static final long serialVersionUID = 7451901773718352886L;
 	
 	public void service(HttpServletRequest request,HttpServletResponse response)

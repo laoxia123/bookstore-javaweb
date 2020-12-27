@@ -33,19 +33,15 @@
   </head>
   
   <body>
-<div>
-	<a href="<c:url value='/jsps/book/list.jsp'/>">全部分类</a>
-</div>
+	<div>
+		<a href="${pageContext.request.contextPath }/book?method=findAll">全部分类</a>
+	</div>
 
+  <c:forEach var="c" items="${cList}">
+	<div>
+		<a href="${pageContext.request.contextPath }/book?method=findByCid&cid=${c.cid}">${c.cname }</a>
+	</div>
+</c:forEach>
 
-<div>
-	<a href="<c:url value='/jsps/book/list.jsp'/>">JavaSE分类</a>
-</div>
-<div>
-	<a href="<c:url value='/jsps/book/list.jsp'/>">JavaEE分类</a>
-</div>
-<div>
-	<a href="<c:url value='/jsps/book/list.jsp'/>">Javascript分类</a>
-</div>
   </body>
 </html>

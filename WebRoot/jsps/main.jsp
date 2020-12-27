@@ -49,10 +49,10 @@
 	</tr>
 	<tr>
 		<td width="120" style="padding:5px;" align="center" valign="top">
-			<iframe frameborder="0" width="120" src="<c:url value='/jsps/left.jsp'/>" name="left"></iframe>
+			<iframe frameborder="0" width="120" src="${pageContext.request.contextPath }/category?method=findAll" name="left"></iframe>
 		</td>
 		<td>
-			<iframe frameborder="0" src="<c:url value='/jsps/body.jsp'/>" name="body"></iframe>
+			<iframe frameborder="0" src="${pageContext.request.contextPath }/book?method=findAll" name="body"></iframe>
 		</td>
 	</tr>
 </table>

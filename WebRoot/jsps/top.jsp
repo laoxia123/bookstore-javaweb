@@ -33,13 +33,17 @@
   <body>
 <h1 style="text-align: center;">ITCAST书店</h1>
 <div style="font-size: 10pt;">
-		您好：张三&nbsp;&nbsp;|&nbsp;&nbsp;
-		<a href="<c:url value='/jsps/cart/list.jsp'/>" target="body">我的购物车</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		<a href="<c:url value='/jsps/order/list.jsp'/>" target="body">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		<a href="javascript:alert('您已经退出');" target="_parent">退出</a>
+		<c:if test="${not empty existUser }">
+			您好：${existUser.username }&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="<c:url value='/jsps/cart/list.jsp'/>" target="body">我的购物车</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="<c:url value='/jsps/order/list.jsp'/>" target="body">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="${pageContext.request.contextPath }/user?method=exit" target="_parent">退出</a>
+		</c:if>
 		<br/>
-		<a href="<c:url value='/jsps/user/login.jsp'/>" target="_parent">登录</a> |&nbsp; 
-		<a href="<c:url value='/jsps/user/regist.jsp'/>" target="_parent">注册</a>
+		<c:if test="${empty existUser }">
+			<a href="<c:url value='/jsps/user/login.jsp'/>" target="_parent">登录</a> |&nbsp; 
+			<a href="<c:url value='/jsps/user/regist.jsp'/>" target="_parent">注册</a>
+		</c:if>
 </div>
   </body>
 </html>

@@ -31,12 +31,62 @@ public class UserServlet extends BaseServlet {
 			if(flag == false){
 				request.setAttribute("msg", "注册失败了！！");
 			}else{
-				request.setAttribute("msg", "注册成功了！！");
+				request.setAttribute("msg", "注册成功了，请您去激活！！");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
 		return "/jsps/msg.jsp";
+	}
+	
+	public String active(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String code = request.getParameter("code");
+		
+		UserService us = new UserService();
+		
+		User user = us.findUserByCode(code);
+		if(user == null){
+			request.setAttribute("msg", "激活失败了");
+		}else{
+			//修改用户的状态，状态默认值0，修改成1
+			user.setState(1);
+			//再调用UserService修改方法
+			us.updateUser(user);
+			request.setAttribute("msg", "激活成功了，请您去登录");
+		}
+		
+		return "/jsps/msg.jsp";
+	}
+	
+	public String login(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Map<String, String[]> map = request.getParameterMap();
+		User user = new User();
+		try {
+			BeanUtils.populate(user, map);
+			UserService us = new UserService();
+			 User existUser = us.login(user);
+			 if(existUser == null){
+				 request.setAttribute("msg", "用户名或密码错误！！");
+				 return "/jsps/msg.jsp";
+			 }else{
+				 request.getSession().setAttribute("existUser", existUser);
+				 return "/jsps/main.jsp";
+			 }
+			 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String exit(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getSession().invalidate();
+		return "jsps/main.jsp";
+		
 	}
 
 }
