@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -56,6 +56,12 @@
   <body>
 <h1>购物车</h1>
 
+<c:if test="${ fn:length(cart.cartItems) eq 0 }">
+	<h2>亲，您还没有购物，购物车为空</h2>
+	<img src="${pageContext.request.contextPath }/images/cart.png" width="230" height="260" />
+</c:if>
+
+<c:if test="${ fn:length(cart.cartItems) ne 0 }">
 <table border="1" width="100%" cellspacing="0" background="black">
 	<tr>
 		<td colspan="7" align="right" style="font-size: 15pt; font-weight: 900">
@@ -94,5 +100,6 @@
 		</td>
 	</tr>
 </table>
+</c:if>
   </body>
 </html>

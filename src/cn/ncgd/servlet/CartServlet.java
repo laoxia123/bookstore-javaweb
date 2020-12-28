@@ -14,6 +14,9 @@ import cn.ncgd.vo.CartItem;
 
 public class CartServlet extends BaseServlet {
 
+	
+	private static final long serialVersionUID = -6328311420923161772L;
+
 	/**
 	 * 把购物项添加到购物车中
 	 * @param request
@@ -56,7 +59,7 @@ public class CartServlet extends BaseServlet {
 	 * @param request
 	 * @return
 	 */
-	public String removeCart(HttpServletRequest request){
+	public String removeCart(HttpServletRequest request, HttpServletResponse response){
 		//获取购物车
 		Cart cart = getCart(request);
 		String bookId = request.getParameter("bookId");
@@ -69,7 +72,7 @@ public class CartServlet extends BaseServlet {
 	 * @param request
 	 * @return
 	 */
-	public String clearCart(HttpServletRequest request){
+	public String clearCart(HttpServletRequest request, HttpServletResponse response){
 		//获取购物车
 		Cart cart = getCart(request);
 		cart.clearCart();
