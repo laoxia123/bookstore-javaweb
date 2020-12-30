@@ -21,6 +21,11 @@
     <servlet-name>CartServlet</servlet-name>
     <servlet-class>cn.ncgd.servlet.CartServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>OrderServlet</servlet-name>
+    <servlet-class>cn.ncgd.servlet.OrderServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -40,6 +45,10 @@
   <servlet-mapping>
     <servlet-name>CartServlet</servlet-name>
     <url-pattern>/cart</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/order</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
