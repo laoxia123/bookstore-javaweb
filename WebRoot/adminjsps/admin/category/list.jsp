@@ -22,49 +22,22 @@
   </head>
   
   <body>
+  	<h3>${msg }</h3>
     <h2 style="text-align: center;">分类列表</h2>
     <table align="center" border="1" cellpadding="0" cellspacing="0">
     	<tr id="th" bordercolor="rgb(78,78,78)">
     		<th>分类名称</th>
     		<th>操作</th>
     	</tr>
-    
-    	<tr bordercolor="rgb(78,78,78)">
-    		<td>JavaSE</td>
-    		<td>
-    		  <a href="<c:url value='/adminjsps/admin/category/mod.jsp'/>">修改</a> |
-    		  <a href="<c:url value='/adminjsps/admin/category/del.jsp'/>">删除</a>
-    		</td>
-    	</tr>
-    	<tr bordercolor="rgb(78,78,78)">
-    		<td>JavaEE</td>
-    		<td>
-    		  <a href="<c:url value='/adminjsps/admin/category/mod.jsp'/>">修改</a> |
-    		  <a href="<c:url value='/adminjsps/admin/category/del.jsp'/>">删除</a>
-    		</td>
-    	</tr>
-    	<tr bordercolor="rgb(78,78,78)">
-    		<td>Javascript</td>
-    		<td>
-    		  <a href="<c:url value='/adminjsps/admin/category/mod.jsp'/>">修改</a> |
-    		  <a href="<c:url value='/adminjsps/admin/category/del.jsp'/>">删除</a>
-    		</td>
-    	</tr>
-    	<tr bordercolor="rgb(78,78,78)">
-    		<td>Struts</td>
-    		<td>
-    		  <a href="<c:url value='/adminjsps/admin/category/mod.jsp'/>">修改</a> |
-    		  <a href="<c:url value='/adminjsps/admin/category/del.jsp'/>">删除</a>
-    		</td>
-    	</tr>
-    	<tr bordercolor="rgb(78,78,78)">
-    		<td>hibernate</td>
-    		<td>
-    		  <a href="<c:url value='/adminjsps/admin/category/mod.jsp'/>">修改</a> |
-    		  <a href="<c:url value='/adminjsps/admin/category/del.jsp'/>">删除</a>
-    		</td>
-    	</tr>
-   
+   		 <c:forEach var="c" items="${cList }">
+	    	<tr bordercolor="rgb(78,78,78)">
+	    		<td>${c.cname }</td>
+	    		<td>
+	    		  <a href="${pageContext.request.contextPath }/category?method=initUpdateAdmin&cid=${c.cid}">修改</a> |
+	    		  <a href="${pageContext.request.contextPath }/category?method=deleteAdmin&cid=${c.cid}">删除</a>
+	    		</td>
+	    	</tr>
+    	</c:forEach>
     </table>
   </body>
 </html>

@@ -12,4 +12,6 @@ public interface BookDao {
 
 	Book findByBid(String bid);
 
+	void updateByCid(String cid);
+
 }

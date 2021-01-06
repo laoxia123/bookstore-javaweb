@@ -55,4 +55,18 @@ public class BookDaoImpl implements BookDao {
 		}
 	}
 
+	@Override
+	public void updateByCid(String cid) {
+		QueryRunner runner = new QueryRunner(MyJdbcUtil.getDataSource());
+		
+		String sql = "update book set cid = null where cid = ? and isdel = 1";
+		try {
+			runner.update(sql, cid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
 }

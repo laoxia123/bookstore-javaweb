@@ -74,8 +74,10 @@
 	</c:forEach>
 </table>
 <br/>
-<form method="post" action="javascript:alert('别点了，再点就去银行页面了！');" id="form" target="_parent">
-	收货地址：<input type="text" name="address" size="50" value="北京市海淀区金燕龙大厦2楼216室无敌收"/><br/>
+<form method="post" action="${pageContext.request.contextPath }/order" id="form" target="_parent">
+	<input type="hidden" name="method" value="payOrder" />
+	<input type="hidden" name="oid" value="${order.oid }" />
+	收货地址：<input type="text" name="address" size="50" value="北京市海淀区金燕龙大厦2楼216室小夏收"/><br/>
 
 	选择银行：<br/>
 	<input type="radio" name="pd_FrpId" value="ICBC-NET-B2C" checked="checked"/>工商银行
@@ -87,7 +89,9 @@
 	<input type="radio" name="pd_FrpId" value="CCB-NET-B2C"/>建设银行
 	<img src="${pageContext.request.contextPath }/bank_img/ccb.bmp" align="middle"/><br/><br/>
 	<input type="radio" name="pd_FrpId" value="BOCO-NET-B2C"/>交通银行
-	<img src="${pageContext.request.contextPath }/bank_img/bcc.bmp" align="middle"/><br/>
+	<img src="${pageContext.request.contextPath }/bank_img/bcc.bmp" align="middle"/>
+	<input type="radio" name="pd_FrpId" value="CMBCHINA-NET-B2C"/>招商银行
+	<img src="${pageContext.request.contextPath }/bank_img/cmb.bmp" align="middle"/><br/>
 </form>
 <a id="pay" href="javascript:document.getElementById('form').submit();"></a>
 

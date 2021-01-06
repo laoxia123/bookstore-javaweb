@@ -23,4 +23,9 @@ public class BookService {
 		return dao.findByBid(bid);
 	}
 
+	public void updateByCid(String cid) {
+		BookDao dao = new BookDaoImpl();
+		dao.updateByCid(cid);
+	}
+
 }

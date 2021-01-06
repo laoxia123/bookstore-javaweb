@@ -1,6 +1,7 @@
 package cn.ncgd.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import org.apache.commons.dbutils.DbUtils;
 
@@ -40,6 +41,21 @@ public class OrderService {
 			e.printStackTrace();
 		}
 		
+	}
+
+	public List<Order> findByUid(String uid) {
+		OrderDao dao = new OrderDaoImpl();
+		return dao.findByUid(uid);
+	}
+
+	public Order findByOid(String oid) {
+		OrderDao dao = new OrderDaoImpl();
+		return dao.findByOid(oid);
+	}
+
+	public void updateOrder(Order order) {
+		OrderDao dao = new OrderDaoImpl();
+		dao.updateOrder(order);
 	}
 
 }

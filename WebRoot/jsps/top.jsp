@@ -36,7 +36,7 @@
 		<c:if test="${not empty existUser }">
 			您好：${existUser.username }&nbsp;&nbsp;|&nbsp;&nbsp;
 			<a href="<c:url value='/jsps/cart/list.jsp'/>" target="body">我的购物车</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<a href="<c:url value='/jsps/order/list.jsp'/>" target="body">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="${pageContext.request.contextPath }/order?method=findByUid" target="body">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 			<a href="${pageContext.request.contextPath }/user?method=exit" target="_parent">退出</a>
 		</c:if>
 		<br/>
