@@ -6,10 +6,12 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import cn.ncgd.utils.MyJdbcUtil;
 import cn.ncgd.vo.Book;
 import cn.ncgd.vo.Category;
+import cn.ncgd.vo.PageBean;
 
 public class BookDaoImpl implements BookDao {
 
@@ -67,6 +69,30 @@ public class BookDaoImpl implements BookDao {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
+	}
+
+	@Override
+	public PageBean<Book> findByPage(int pageCode, int pageSize) {
+		PageBean<Book> page = new PageBean<Book>();
+		page.setPageCode(pageCode);
+		page.setPageSize(pageSize);
+		QueryRunner runner = new QueryRunner(MyJdbcUtil.getDataSource());
+		try {
+			String CountSql = "select count(*) from book where isdel=0";
+			long count = (Long) runner.query(CountSql, new ScalarHandler());
+			int totalCount = (int)count;
+			page.setTotalCount(totalCount);
+			String LimitSql = "select * from book where isdel=0 limit ?,?";
+			List<Book> beanList = runner.query(LimitSql, new BeanListHandler<Book>(Book.class), (pageCode-1)*pageSize,pageSize);
+			page.setBeanList(beanList);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+				
+		
+		return page;
 	}
 
 }

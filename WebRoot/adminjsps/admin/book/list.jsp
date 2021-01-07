@@ -32,52 +32,24 @@
   </head>
   
   <body>
-   <div class="icon">
-    <a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>"><img src="<c:url value='/book_img/8758723-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>">Java就业培训教程</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>"><img src="<c:url value='/book_img/8991366-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>">精通Hibernate</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>"><img src="<c:url value='/book_img/9265169-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>">Head First java</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>"><img src="<c:url value='/book_img/9317290-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>">Java编程思想（第4版）</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>"><img src="<c:url value='/book_img/20029394-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>">精通Spring2.x </a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>"><img src="<c:url value='/book_img/20285763-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>">Java核心技术卷1</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>"><img src="<c:url value='/book_img/20385925-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>">Struts2深入详解</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>"><img src="<c:url value='/book_img/22722790-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>">Javascript权威指南</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>"><img src="<c:url value='/book_img/22788412-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>">JavaWeb开发详解</a>
-  </div>
-  
+  <c:forEach var="book" items="${page.beanList }">
+	   <div class="icon">
+	    <a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>"><img src="${pageContext.request.contextPath }/${book.image}" width="130" height="150" border="0"/></a>
+	      <br/>
+	   	<a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>">${book.bname }</a>
+	  </div>
+  </c:forEach>
+  	<div style="clear:left">
+  		第${page.pageCode }页/共${page.totalPage }页
+  		<a href="${pageContext.request.contextPath }/book?method=findByPage&pc=1">首页</a>
+  		<c:if test="${page.pageCode > 1 }">
+  			<a href="${pageContext.request.contextPath }/book?method=findByPage&pc=${page.pageCode-1}">上一页</a>
+  		</c:if>
+  		<c:if test="${page.pageCode < page.totalPage }">
+	  		<a href="${pageContext.request.contextPath }/book?method=findByPage&pc=${page.pageCode+1}">下一页</a>
+  		</c:if>
+  		<a href="${pageContext.request.contextPath }/book?method=findByPage&pc=${page.totalPage}">尾页</a>
+  	</div>
   </body>
  
 </html>

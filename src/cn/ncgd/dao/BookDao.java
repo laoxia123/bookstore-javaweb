@@ -3,6 +3,7 @@ package cn.ncgd.dao;
 import java.util.List;
 
 import cn.ncgd.vo.Book;
+import cn.ncgd.vo.PageBean;
 
 public interface BookDao {
 
@@ -13,5 +14,7 @@ public interface BookDao {
 	Book findByBid(String bid);
 
 	void updateByCid(String cid);
+
+	PageBean<Book> findByPage(int pageCode, int pageSize);
 
 }
