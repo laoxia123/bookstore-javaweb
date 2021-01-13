@@ -58,4 +58,19 @@ public class OrderService {
 		dao.updateOrder(order);
 	}
 
+	public List<Order> findAllAdmin() {
+		OrderDao dao = new OrderDaoImpl();
+		return dao.findAllAdmin();
+	}
+
+	public List<Order> findByState(int state) {
+		OrderDao dao = new OrderDaoImpl();
+		return dao.findByState(state);
+	}
+
+	public void updateByState(String oid, int state) {
+		OrderDao dao = new OrderDaoImpl();
+		dao.updateByState(oid,state);
+	}
+
 }

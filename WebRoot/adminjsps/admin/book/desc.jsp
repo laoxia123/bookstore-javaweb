@@ -33,22 +33,21 @@
 	}
 </style>
   </head>
-  
   <body>
   <div>
-    <img src="<c:url value='/book_img/20029394-1_l.jpg'/>" border="0"/>
+    <img src="${pageContext.request.contextPath }/${book.image}" width="130" height="150" border="0"/>
   </div>
-  <form style="margin:20px;" id="form" action="javascript:alert('操作成功！');" method="post">
-  	图书名称：<input type="text" name="bname" value="精通Spring2.x"/><br/>
-  	图书单价：<input type="text" name="price" value="63.2元"/><br/>
-  	图书作者：<input type="text" name="author" value="陈华雄"/><br/>
+  <form style="margin:20px;" id="form" action="${pageContext.request.contextPath }/book" method="post">
+  	<input type="hidden" name="bid" value="${book.bid }">
+  	<input type="hidden" name="image" value="${book.image }">
+  	<input type="hidden" name="isdel" value="${book.isdel }">
+  	图书名称：<input type="text" name="bname" value="${book.bname }"/><br/>
+  	图书单价：<input type="text" name="price" value="${book.price }"/>元<br/>
+  	图书作者：<input type="text" name="author" value="${book.author }"/><br/>
   	图书分类：<select style="width: 150px; height: 20px;" name="cid">
-     		<option value="">JavaSE</option>
-    		<option value="">JavaEE</option>
-			<option value="">JavaScript</option>
-			<option value="">Hibernate</option>
-			<option value="">Struts</option>
-			<option value="" selected='selected'>Spring</option>
+  			<c:forEach var="c" items="${cList }">
+     			<option value="${c.cid }" <c:if test="${book.cid eq c.cid }">selected</c:if>>${c.cname }</option>
+    		</c:forEach>
     	</select><br/>
   	<input type="submit" name="method" value="del" onclick="return confirm('是否真要删除该图书？');"/>
   	<input type="submit" name="method" value="mod"/>

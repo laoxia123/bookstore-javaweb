@@ -17,4 +17,10 @@ public interface BookDao {
 
 	PageBean<Book> findByPage(int pageCode, int pageSize);
 
+	void save(Book book);
+
+	void updateBook(Book book);
+
+	void deleteByBid(String bid);
+
 }

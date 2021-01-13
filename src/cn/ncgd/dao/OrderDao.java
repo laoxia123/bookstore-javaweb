@@ -19,4 +19,10 @@ public interface OrderDao {
 
 	void updateOrder(Order order);
 
+	List<Order> findAllAdmin();
+
+	List<Order> findByState(int state);
+
+	void updateByState(String oid, int state);
+
 }

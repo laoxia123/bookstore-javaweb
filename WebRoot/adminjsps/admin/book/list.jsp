@@ -34,9 +34,9 @@
   <body>
   <c:forEach var="book" items="${page.beanList }">
 	   <div class="icon">
-	    <a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>"><img src="${pageContext.request.contextPath }/${book.image}" width="130" height="150" border="0"/></a>
+	    <a href="${pageContext.request.contextPath }/book?method=findByBidAdmin&bid=${book.bid}"><img src="${pageContext.request.contextPath }/${book.image}" width="130" height="150" border="0"/></a>
 	      <br/>
-	   	<a href="<c:url value='/adminjsps/admin/book/desc.jsp'/>">${book.bname }</a>
+	   	<a href="${pageContext.request.contextPath }/book?method=findByBidAdmin&bid=${book.bid}">${book.bname }</a>
 	  </div>
   </c:forEach>
   	<div style="clear:left">

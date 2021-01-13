@@ -66,7 +66,7 @@
 							等待发货
 						</c:if>
 						<c:if test="${order.state eq 3  }">
-							<a href="javascript:alert('已确认收货！');">确认收货</a>
+							<a href="${ pageContext.request.contextPath }/order?method=updateByState&oid=${order.oid}">确认收货</a>
 						</c:if>
 						<c:if test="${order.state eq 4 }">
 							订单结束

@@ -34,4 +34,20 @@ public class BookService {
 		return dao.findByPage(pageCode,pageSize);
 	}
 
+	public void save(Book book) {
+		BookDao dao = new BookDaoImpl();
+		dao.save(book);
+	}
+
+	public void updateBook(Book book) {
+		BookDao dao = new BookDaoImpl();
+		dao.updateBook(book);
+		
+	}
+
+	public void deleteByBid(String bid) {
+		BookDao dao = new BookDaoImpl();
+		dao.deleteByBid(bid);
+	}
+
 }

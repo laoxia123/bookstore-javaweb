@@ -95,4 +95,63 @@ public class BookDaoImpl implements BookDao {
 		return page;
 	}
 
+	@Override
+	public void save(Book book) {
+		QueryRunner runner = new QueryRunner(MyJdbcUtil.getDataSource());
+		String sql = "insert into book values(?,?,?,?,?,?,?)";
+		Object[] params = {book.getBid(),book.getBname(),book.getPrice(),book.getAuthor(),book.getImage(),book.getCid(),book.getIsdel()};
+		try {
+			runner.update(sql, params);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void updateBook(Book book) {
+		QueryRunner runner = new QueryRunner(MyJdbcUtil.getDataSource());
+		String sql = "update book set bname=?,price=?,author=?,image=?,cid=?,isdel=? where bid=?";
+		Object[] params = {book.getBname(),book.getPrice(),book.getAuthor(),book.getImage(),book.getCid(),book.getIsdel(),book.getBid()};
+		try {
+			runner.update(sql, params);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void deleteByBid(String bid) {
+		QueryRunner runner = new QueryRunner(MyJdbcUtil.getDataSource());
+		String sql = "update book set isdel=1 where bid=?";
+		try {
+			runner.update(sql, bid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

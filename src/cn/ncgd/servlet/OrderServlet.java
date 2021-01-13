@@ -212,4 +212,60 @@ public class OrderServlet extends BaseServlet {
 		
 		return "/jsps/msg.jsp";
 	}
+	
+	/**
+	 * 查询所有订单
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public String findAllAdmin(HttpServletRequest request,HttpServletResponse response){
+		OrderService os = new OrderService();
+		List<Order> oList = os.findAllAdmin();
+		request.setAttribute("oList", oList);
+		return "adminjsps/admin/order/list.jsp";
+	}
+	
+	
+	public String findByState(HttpServletRequest request,HttpServletResponse response){
+		int state = Integer.parseInt(request.getParameter("state"));
+		OrderService os = new OrderService();
+		List<Order> oList = os.findByState(state);
+		request.setAttribute("oList", oList);
+		return "adminjsps/admin/order/list.jsp";
+	}
+	
+	/**
+	 * 发货
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public String updateByStateAdmin(HttpServletRequest request,HttpServletResponse response){
+		String oid = request.getParameter("oid");
+		int state = 3;
+		OrderService os = new OrderService();
+		os.updateByState(oid,state);
+		return findAllAdmin(request,response);
+	}
+	
+	/**
+	 * 前台的修改订单的状态
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	public String updateByState(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		// 接收订单的主键
+		String oid = request.getParameter("oid");
+		// 可以确认收货了，订单结束了
+		int state = 4;
+		
+		OrderService os = new OrderService();
+		os.updateByState(oid,state);
+		
+		return findByUid(request,response);
+	}
 }
